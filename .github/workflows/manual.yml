@@ -8,7 +8,8 @@ on:
 jobs:
   get-email:
     runs-on: ubuntu-latest
-    
+    outputs:
+      output1: ${{ steps.email.outputs.test }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
