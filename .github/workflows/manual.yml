@@ -1,0 +1,28 @@
+name: Get User Email
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  get-email:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get User Email
+        id: email
+        run: |
+          token="${{ secrets.GITHUB_TOKEN }}"
+          user_url=$(curl -s -H "Authorization: token $token" \
+            "https://api.github.com/user" | jq -r '.url')
+          email=$(curl -s -H "Authorization: token $token" \
+            "$user_url/emails" | jq -r '.[0].email')
+          echo "::set-output name=email::$email"
+
+      - name: Use User Email
+        run: |
+          echo "User email: ${{ steps.email.outputs.email }}"
