@@ -41,7 +41,5 @@ jobs:
       - env:
           email: ${{needs.userEmail.outputs.output1}}
         run: echo "${{email}}"
-        with:
-          email: ${{needs.userEmail.outputs.output1}}
 
 
