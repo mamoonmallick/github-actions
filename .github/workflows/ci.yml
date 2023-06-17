@@ -40,6 +40,6 @@ jobs:
     steps:
       - env:
           email: ${{needs.userEmail.outputs.output1}}
-        run: echo "${{email}}"
+        run: echo "$email"
 
 
