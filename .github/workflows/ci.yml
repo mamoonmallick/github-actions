@@ -38,7 +38,8 @@ jobs:
     needs: [userEmail]
     runs-on: ubuntu-latest
     steps:
-      - env:
+      - name: print
+        env:
           email: ${{needs.userEmail.outputs.output1}}
         run: echo "$email"
 
