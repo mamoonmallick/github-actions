@@ -40,6 +40,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          email: ${{needs.userEmail.output1}}
+          email: ${{needs.userEmail.outputs.output1}}
 
 
