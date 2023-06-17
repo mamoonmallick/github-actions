@@ -38,7 +38,8 @@ jobs:
     needs: [userEmail]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - env:
+          email: ${{needs.userEmail.outputs.output1}}
         run: echo "${{email}}"
         with:
           email: ${{needs.userEmail.outputs.output1}}
