@@ -34,6 +34,19 @@ jobs:
         id: step1
         run: echo "email=$(git log -n 1 --pretty=format:%ae)" >> "$GITHUB_OUTPUT"
 
+  curl-example:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send cURL request
+        id: curl
+        run: |
+          response=$(curl -s https://api.example.com/endpoint)
+          echo "::set-output name=response::$response"
+
+      - name: Print response
+        run: |
+          echo "Response: ${{ steps.curl.outputs.response }}"
+
   build:
     needs: [userEmail]
     runs-on: ubuntu-latest
